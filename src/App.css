@@ -1,0 +1,60 @@
+.app{
+    padding: 3rem;
+    display: flex;
+    gap: 4vw;
+    justify-content: center;
+    width: fit-content;
+    max-width: 90vw;
+    margin: 0 auto;
+    border-radius: 10px;
+    box-shadow: 1px 1px 8px rgba(0, 0, 0, 0.3);
+    margin-top: 5rem;
+    background-color: #0713ff6e;
+}
+
+h3{
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+}
+
+form button{
+    background-color: rgba(49, 101, 233, 0.653);
+    color: #fff;
+    text-transform: uppercase;
+    border: none;
+    border-radius: 5px;
+    padding: .5rem 1rem;
+    cursor: pointer;
+    transition: all .2s;
+    font-weight: bold;
+    letter-spacing: 1px;
+}
+
+form button:hover{
+    background-color: rgb(25, 77, 209);
+}
+
+@media(max-width: 1440px){
+    .app{
+        flex-direction: column;
+    }
+}
+
+@media(max-width: 600px){
+    .app{
+        padding: 1rem;
+    }
+}
+@media(max-width: 375px){
+    .app{
+        padding: 2vw;
+        max-width: 95vw;
+        font-size: 80%;
+        gap: 2vw;
+    }
+    form button {
+        padding: .2rem .5rem;
+        border-radius: 3px;
+        font-size: .8rem;
+    }
+}
