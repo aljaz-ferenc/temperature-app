@@ -28,7 +28,6 @@ function App() {
     }
   }, [filter]);
 
-
   //submit button click
   function handleAddData() {
     if (filter.startDate && filter.endDate) {
@@ -40,10 +39,12 @@ function App() {
 
   function getAllData() {
     getAllTemps()
-    .then((data) => {setData(data)})
-    .catch((error) => setError(error.message))
+      .then((data) => {
+        setData(data);
+      })
+      .catch((error) => setError(error.message));
   }
-  
+
   function getFilteredData() {
     getTempsByDateRange(filter.startDate, filter.endDate)
       .then((data) => setData(data))
@@ -59,16 +60,19 @@ function App() {
   }
 
   return (
-    <div className="app">
-      <Statistics
-        data={data}
-        filter={filter}
-        getFilteredData={getFilteredData}
-        setFilter={setFilter}
-        error={error}
-      />
-      <SubmitForm handleAddData={handleAddData} />
-    </div>
+    <>
+      <h1>AIR TEMPERATURE</h1>
+      <div className="app">
+        <Statistics
+          data={data}
+          filter={filter}
+          getFilteredData={getFilteredData}
+          setFilter={setFilter}
+          error={error}
+        />
+        <SubmitForm handleAddData={handleAddData} />
+      </div>
+    </>
   );
 }
 
