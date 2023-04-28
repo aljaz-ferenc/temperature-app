@@ -9,7 +9,7 @@ export default function SubmitForm({handleAddData}) {
 
   function handleSubmit(e) {
     e.preventDefault();
-    addTemperature(temperature, location, date);
+    addTemperature(+temperature, location, date);
     setTemperature("");
     setLocation("");
     setDate("");
@@ -24,7 +24,7 @@ export default function SubmitForm({handleAddData}) {
         <input
           value={temperature}
           required
-          onChange={(e) => setTemperature(+e.target.value)}
+          onChange={(e) => setTemperature(e.target.value)}
           id="temperature"
           type="number"
         />

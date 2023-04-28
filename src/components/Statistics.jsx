@@ -88,7 +88,7 @@ export default function Statistics({ data, setFilter, error}) {
           </div>
           <button onClick={handleFilter}>Filter</button>
         </form>
-        {!dateRangeIsValid && <p className="date-error">Start date cannot be greated than end date!</p>}
+        {!dateRangeIsValid && <p className="date-error">Start date cannot be greater than end date!</p>}
       {data && data.length > 0 ? <div className="display">
         <h3>Statistics</h3>
         <p>

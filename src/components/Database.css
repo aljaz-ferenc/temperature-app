@@ -24,6 +24,11 @@
     padding: .2rem .5rem;
 }
 
+.database th{
+    cursor: pointer;
+    user-select: none;
+}
+
 .database tbody tr:nth-child(odd){
     background-color: rgba(202, 205, 250, 0.703);
 }
