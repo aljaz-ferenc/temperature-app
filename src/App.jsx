@@ -8,6 +8,7 @@ function App() {
   const [data, setData] = useState(null);
   const [lastRequestTime, setLastRequestTime] = useState(null);
   const [filter, setFilter] = useState({ startDate: null, endDate: null });
+  const [error, setError] = useState(null);
   const throttleTime = 3000;
 
   //fetch on app render
@@ -33,18 +34,19 @@ function App() {
       getFilteredData();
     } else {
       getAllData();
-      console.log("fetch");
     }
   }
 
   function getAllData() {
-    getAllTemps().then((data) => setData(data));
+    getAllTemps()
+      .then((data) => setData(data))
+      .catch((error) => setError(error.message));
   }
 
   function getFilteredData() {
-    getTempsByDateRange(filter.startDate, filter.endDate).then((data) =>
-      setData(data)
-    );
+    getTempsByDateRange(filter.startDate, filter.endDate)
+      .then((data) => setData(data))
+      .catch((error) => setError(error.message));
   }
 
   function currentTime() {
@@ -62,6 +64,7 @@ function App() {
         filter={filter}
         getFilteredData={getFilteredData}
         setFilter={setFilter}
+        error={error}
       />
       <SubmitForm handleAddData={handleAddData} />
     </div>

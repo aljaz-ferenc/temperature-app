@@ -1,7 +1,7 @@
 import React, { useEffect, useState, useRef } from "react";
 import "./Statistics.css";
 
-export default function Statistics({ data, setFilter}) {
+export default function Statistics({ data, setFilter, error}) {
   const startDateRef = useRef();
   const endDateRef = useRef();
   const [average, setAverage] = useState(null);
@@ -9,6 +9,7 @@ export default function Statistics({ data, setFilter}) {
   const [hotDays, setHotDays] = useState();
   const [coldDays, setColdDays] = useState();
   const [mode, setMode] = useState(null);
+  const [dateRangeIsValid, setDateRangeIsValid] = useState()
 
   useEffect(() => {
     if (data) calcStats(data);
@@ -18,8 +19,8 @@ export default function Statistics({ data, setFilter}) {
     const temps = data.map((data) => data.temperature);
     const sum = temps.reduce((acc, temp) => acc + temp, 0);
     const average = sum / temps.length;
-    const hotDays = temps.filter((temp) => temp >= 15).length;
-    const coldDays = temps.filter((temp) => temp <= 15).length;
+    const hotDays = temps.filter((temp) => temp > 15).length;
+    const coldDays = temps.filter((temp) => temp < 15).length;
     const aboveAverage = temps.filter((temp) => temp > average).length;
 
     setAverage(average);
@@ -59,7 +60,6 @@ export default function Statistics({ data, setFilter}) {
     });
   }
 
-
   return (
     <div className="statistics">
       <div className="filter">
@@ -93,6 +93,7 @@ export default function Statistics({ data, setFilter}) {
           Mode: <strong>{mode}</strong>
         </div>
       </div> : <p>No data to display...</p>}
+      {error && <p style={{color: 'red'}}>Something went wrong: {error}</p>}
       </div>
     </div>
   );
