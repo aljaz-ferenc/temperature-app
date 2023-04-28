@@ -1,4 +1,4 @@
-import { useState, useMemo, useEffect } from "react";
+import { useState, useMemo, useEffect, useCallback } from "react";
 import { getAllTemps, getTempsByDateRange } from "./firebase/firebase";
 import "./App.css";
 import Statistics from "./components/Statistics";
@@ -28,6 +28,7 @@ function App() {
     }
   }, [filter]);
 
+
   //submit button click
   function handleAddData() {
     if (filter.startDate && filter.endDate) {
@@ -39,10 +40,10 @@ function App() {
 
   function getAllData() {
     getAllTemps()
-      .then((data) => setData(data))
-      .catch((error) => setError(error.message));
+    .then((data) => {setData(data)})
+    .catch((error) => setError(error.message))
   }
-
+  
   function getFilteredData() {
     getTempsByDateRange(filter.startDate, filter.endDate)
       .then((data) => setData(data))

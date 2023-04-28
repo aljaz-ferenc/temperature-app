@@ -9,7 +9,7 @@ export default function Statistics({ data, setFilter, error}) {
   const [hotDays, setHotDays] = useState();
   const [coldDays, setColdDays] = useState();
   const [mode, setMode] = useState(null);
-  const [dateRangeIsValid, setDateRangeIsValid] = useState()
+  const [dateRangeIsValid, setDateRangeIsValid] = useState(true)
 
   useEffect(() => {
     if (data) calcStats(data);
@@ -54,10 +54,24 @@ export default function Statistics({ data, setFilter, error}) {
 
   function handleFilter(e) {
     e.preventDefault();
+    dateIsValid()
     setFilter({
       startDate: new Date(startDateRef.current.value).getTime(),
       endDate: new Date(endDateRef.current.value).getTime(),
     });
+  }
+
+  function dateIsValid(){
+    const startDate = startDateRef.current.value
+    const endDate = endDateRef.current.value
+    if(startDate === '' && endDate === ''){
+      setDateRangeIsValid(true)
+    }
+    if(startDate > endDate){
+      setDateRangeIsValid(false)
+    }else{
+      setDateRangeIsValid(true)
+    }
   }
 
   return (
@@ -74,6 +88,7 @@ export default function Statistics({ data, setFilter, error}) {
           </div>
           <button onClick={handleFilter}>Filter</button>
         </form>
+        {!dateRangeIsValid && <p className="date-error">Start date cannot be greated than end date!</p>}
       {data && data.length > 0 ? <div className="display">
         <h3>Statistics</h3>
         <p>
@@ -92,7 +107,7 @@ export default function Statistics({ data, setFilter, error}) {
         <div>
           Mode: <strong>{mode}</strong>
         </div>
-      </div> : <p>No data to display...</p>}
+      </div> : <p style={{fontStyle: 'italic'}}>No data to display...</p>}
       {error && <p style={{color: 'red'}}>Something went wrong: {error}</p>}
       </div>
     </div>

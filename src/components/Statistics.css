@@ -24,6 +24,19 @@
     color: red;
 }
 
+.disabled{
+    background-color: grey;
+    cursor:not-allowed;
+}
+
+.date-error{
+    color: red;
+    font-size: .8rem;
+    position: absolute;
+    transform: translateY(-100%);
+    font-style: italic;
+}
+
 @media(max-width: 1440px){
     .filter form{
         /* align-items: flex-end; */
