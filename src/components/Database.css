@@ -1,0 +1,35 @@
+.database{
+    max-height: 200px;
+    overflow-y: scroll;
+    margin: 0 auto;
+    position: relative;
+}
+
+.database button{
+    transform: translateY(-100%);
+}
+
+.database table{
+    display: table;
+    table-layout: auto;
+    width: 100%;
+    background-color: var(--color-primary);
+    border-radius: 10px;
+    box-shadow: 2px 2px 5px var(--color-shadow);
+    border-collapse: collapse;
+}
+
+.database th, .database td{
+    text-align: center;
+    padding: .2rem .5rem;
+}
+
+.database tbody tr:nth-child(odd){
+    background-color: rgba(202, 205, 250, 0.703);
+}
+
+@media(max-width: 425px){
+    .database{
+        font-size: .7rem;
+    }
+}

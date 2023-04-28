@@ -3,9 +3,11 @@ import { getAllTemps, getTempsByDateRange } from "./firebase/firebase";
 import "./App.css";
 import Statistics from "./components/Statistics";
 import SubmitForm from "./components/SubmitForm";
+import Database from "./components/Database";
 
 function App() {
   const [data, setData] = useState(null);
+  const [completeData, setCompleteData] = useState()
   const [lastRequestTime, setLastRequestTime] = useState(null);
   const [filter, setFilter] = useState({ startDate: null, endDate: null });
   const [error, setError] = useState(null);
@@ -41,6 +43,7 @@ function App() {
     getAllTemps()
       .then((data) => {
         setData(data);
+        setCompleteData(data)
       })
       .catch((error) => setError(error.message));
   }
@@ -72,6 +75,7 @@ function App() {
         />
         <SubmitForm handleAddData={handleAddData} />
       </div>
+      {/* <Database completeData={completeData} /> */}
     </>
   );
 }
